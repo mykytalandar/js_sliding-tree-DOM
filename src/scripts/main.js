@@ -3,15 +3,15 @@
 const listCollection = document.querySelectorAll('li');
 
 for (const li of listCollection) {
-  if (li.childNodes.length > 1 && li.firstChild.nodeType === Node.TEXT_NODE) {
-    const liText = li.firstChild.textContent;
+  for (const node of li.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+      const span = document.createElement('span');
 
-    li.firstChild.textContent = '';
-
-    const span = document.createElement('span');
-
-    span.textContent = liText;
-    li.insertBefore(span, li.firstChild);
+      span.textContent = node.textContent.trim();
+      li.insertBefore(span, node);
+      node.remove();
+      break;
+    }
   }
 }
 
