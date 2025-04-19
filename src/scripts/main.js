@@ -3,7 +3,7 @@
 const listCollection = document.querySelectorAll('li');
 
 for (const li of listCollection) {
-  if (li.childNodes.length > 1) {
+  if (li.childNodes.length > 1 && li.firstChild.nodeType === Node.TEXT_NODE) {
     const liText = li.firstChild.textContent;
 
     li.firstChild.textContent = '';
